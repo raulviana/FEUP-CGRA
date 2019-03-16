@@ -15,9 +15,8 @@ class MyTangram extends CGFobject {
         this.bigtriangle = new MyBigTriangle(this.scene);
         this.bigtriangle2 = new MyBigTriangle(this.scene);
 
-        this.normals = [
-                 this.bigtriangle.normals
-                   ]
+        
+                   
           //Diamond transformation matrixes
         this.ang2rad = Math.PI/180;
         this.R = [
@@ -33,7 +32,35 @@ class MyTangram extends CGFobject {
 		   1.5,   0.5,   0,   1.0];
 	}
 
+    initNormalVizBuffers(){
+        this.diamond.normals;
+        this.triangle.normals;
+        this.paralel.normals;
+        this.littletriangle.normals;
+        this.littletriangle2.normals;
+        this.bigtriangle.normals;
+        this.bigtriangle2.normals;
+    }
 
+    enableNormalViz(){
+        this.diamond.enableNormalViz();
+        this.triangle.enableNormalViz();
+        this.paralel.enableNormalViz();
+        this.littletriangle.enableNormalViz();
+        this.littletriangle2.enableNormalViz();
+        this.bigtriangle.enableNormalViz();
+        this.bigtriangle2.enableNormalViz();
+    }
+
+    disableNormalViz(){
+        this.diamond.disableNormalViz();
+        this.triangle.disableNormalViz();
+        this.paralel.disableNormalViz();
+        this.littletriangle.disableNormalViz();
+        this.littletriangle2.disableNormalViz();
+        this.bigtriangle.disableNormalViz();
+        this.bigtriangle2.disableNormalViz();
+    }
 
 	display(){
 

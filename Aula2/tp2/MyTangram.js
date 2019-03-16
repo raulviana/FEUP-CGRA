@@ -16,6 +16,7 @@ class MyTangram extends CGFobject {
         this.bigtriangle2 = new MyBigTriangle(this.scene);
 
           //Diamond transformation matrixes
+        this.ang2rad = Math.PI/180;
         this.R = [
 		  Math.cos(this.ang2rad * -45), (-1 * Math.sin(this.ang2rad * -45)), 0, 0,
    	   	  Math.sin(this.ang2rad * -45), Math.cos(this.ang2rad * -45), 0, 0, 
@@ -34,7 +35,7 @@ class MyTangram extends CGFobject {
 
 	    this.scene.pushMatrix();
         this.scene.translate(-3.4, 0, 0);
-        this.scene.rotate(this.scene.ang2rad * 135, 0, 0, 1);
+        this.scene.rotate(this.ang2rad * 135, 0, 0, 1);
         //if(this.checktriangle)
          this.triangle.display();
         this.scene.popMatrix();
@@ -42,7 +43,7 @@ class MyTangram extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(1, -1, 1);
         this.scene.translate(0, -0.7, 0);
-        this.scene.rotate(this.scene.ang2rad * 45, 0, 0, 1);
+        this.scene.rotate(this.ang2rad * 45, 0, 0, 1);
         //if(this.checkparalel) 
         this.paralel.display();
         this.scene.popMatrix();
@@ -50,7 +51,7 @@ class MyTangram extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(1, 1, 1);
         this.scene.translate(0.7, 0, 0);
-        this.scene.rotate(this.scene.ang2rad * -45, 0, 0, 1);
+        this.scene.rotate(this.ang2rad * -45, 0, 0, 1);
         //if(this.checklittletriangle) 
         this.littletriangle.display();
         this.scene.popMatrix();
@@ -58,7 +59,7 @@ class MyTangram extends CGFobject {
          this.scene.pushMatrix();
         this.scene.scale(1, 1, 1);
         this.scene.translate(0.7, -1.4, 0);
-        this.scene.rotate(this.scene.ang2rad * 135, 0, 0, 1);
+        this.scene.rotate(this.ang2rad * 135, 0, 0, 1);
         //if(this.checklittletriangle2) 
         this.littletriangle2.display();
         this.scene.popMatrix();
@@ -66,7 +67,7 @@ class MyTangram extends CGFobject {
         this.scene.pushMatrix();
         this.scene.scale(1, 1.1, 1);
         this.scene.translate(0, 0, 0);
-        this.scene.rotate(this.scene.ang2rad * 90, 0, 0, 1);
+        this.scene.rotate(this.ang2rad * 90, 0, 0, 1);
         //if(this.checkbigtriangle) 
         this.bigtriangle.display();
         this.scene.popMatrix();
@@ -74,7 +75,7 @@ class MyTangram extends CGFobject {
          this.scene.pushMatrix();
         this.scene.scale(1, 1.1, 1);
         this.scene.translate(1.4, 0, 0);
-        this.scene.rotate(this.scene.ang2rad * -90, 0, 0, 1);
+        this.scene.rotate(this.ang2rad * -90, 0, 0, 1);
         //if(this.checkbigtriangle2) 
         this.bigtriangle2.display();
         this.scene.popMatrix();

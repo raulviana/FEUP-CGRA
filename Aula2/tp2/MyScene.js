@@ -21,9 +21,9 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-       // this.tangram = new MyTangram(this);
-       this.unicube = new MyUnitCube(this);
- 
+        this.tangram = new MyTangram(this);
+        this.unicube = new MyUnitCube(this);
+
         //Objects connected to MyInterface
         this.displayAxis = true;
       /* this.checktriangle = true;
@@ -34,11 +34,12 @@ class MyScene extends CGFscene {
         this.checkbigtriangle = true;
         this.checkbigtriangle2 = true;*/
         this.checktangram = true;
+        this.checkcube = true;
         this.scaleFactor = 1;
 
+        this.ang2rad = Math.PI/180;
       
     }
-
 
 
     initLights() {
@@ -73,13 +74,31 @@ class MyScene extends CGFscene {
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-        this.setDefaultAppearance();
+       // this.setDefaultAppearance();
 
 
         // ---- BEGIN Primitive drawing section
 
+        
+        
+        /*this.pushMatrix();
+        this.translate(0, 0, 7);
+        this.rotate(this.ang2rad * -90, 1, 0, 0);
+        this.translate(3.5, 3.5, 0);*/
 
-        this.unicube.display();
+
+        this.pushMatrix();
+        this.translate(0, -2.5, 0);
+        this.rotate(this.ang2rad * -90, 1, 0, 0);
+        this.translate(0, 0, -0.5);
+        this.scale(7, 7, 1);
+        if(this.checkcube) this.unicube.display();
+        this.popMatrix();
+
+        if(this.checktangram) this.tangram.display();
+
+
+        //this.popMatrix();
 
 
         
