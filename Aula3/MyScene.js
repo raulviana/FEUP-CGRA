@@ -35,7 +35,7 @@ class MyScene extends CGFscene {
 
         //Other variables connected to MyInterface
         this.selectedObject = 3;
-        this.selectedMaterial = 0;
+        this.selectedMaterial = 3;
         this.displayAxis = true;
         this.displayNormals = false;
         this.objectComplexity = 0.5;
@@ -126,10 +126,10 @@ class MyScene extends CGFscene {
 
         // Madeira
         this.material4 = new CGFappearance(this);
-        this.material4.setAmbient(0, 0, 0, 1.0);
-        this.material4.setDiffuse(0, 0, 0, 1.0);
-        this.material4.setSpecular(176, 60, 0, 1.0);
-        this.material4.setShininess(10.0);
+        this.material4.setAmbient(128/255, 43/255, 0, 1.0);
+        this.material4.setDiffuse(77/255, 26/255, 0, 1.0);
+        this.material4.setSpecular(51/255, 17/255, 1.0);
+        this.material4.setShininess(13.0);
        
 
         // Custom material (can be changed in the interface)
@@ -175,7 +175,9 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-        this.materials[this.selectedMaterial].apply();
+        if(this.selectedObject != 3){
+            this.materials[this.selectedMaterial].apply();
+        }
 
         this.pushMatrix();
         this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
@@ -188,5 +190,6 @@ class MyScene extends CGFscene {
         this.objects[this.selectedObject].display();
         this.popMatrix();
         // ---- END Primitive drawing section
+        
     }
 }
