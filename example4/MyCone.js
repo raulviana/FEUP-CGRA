@@ -3,7 +3,7 @@
 * @constructor
 */
 class MyCone extends CGFobject {
-    constructor(scene, slices, stacks, texture) {
+    constructor(scene, slices, stacks) {
         super(scene);
         this.slices = slices;
         this.stacks = stacks;

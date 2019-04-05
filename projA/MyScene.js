@@ -23,8 +23,9 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.prism = new MyPrism(this, 5, 2);
         this.cube = new MyUnitCube(this);
-        this.cilinder = new MyCylinder(this, 5, 2);
-        this.tree = new MyTree(this, 5, 5, 10, 18, './textures/leaf.xcf', './textures/leaf.xcf')
+        this.cilinder = new MyCylinder(this,5, 2);
+        this.tree = new MyTree(this, 5, 5, 10, 18);
+        this.treeRow = new MyTreeRowPatch(this);
 
         //Objects connected to MyInterface
         this.displayNormals = false;
@@ -37,7 +38,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(50, 50, 50), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -67,11 +68,9 @@ class MyScene extends CGFscene {
          if (this.displayNormals)
             this.cilinder.enableNormalViz();
 
-             
-         this.tree.display();
-     //   this.prism.display();
-      //  this.cube.display();
-
+        // this.tree.display();
+         this.treeRow.display();
+  
 
         // ---- END Primitive drawing section
     }

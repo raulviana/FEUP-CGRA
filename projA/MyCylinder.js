@@ -5,11 +5,9 @@
  * @param scene - Reference to MyScene object
  **/
 class MyCylinder extends CGFobject {
-	constructor(scene, slices, stacks, texture) {
+	constructor(scene, slices, stacks) {
 		super(scene);
-	    
-
-		this.slices = slices;
+	    this.slices = slices;
 		this.stacks = stacks;
 
 		this.initBuffers();
@@ -53,6 +51,7 @@ class MyCylinder extends CGFobject {
 				);
 			}
 		}
+
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();

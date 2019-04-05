@@ -23,8 +23,8 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.plane = new MyPlane(this, 5);
-        this.cone = new MyCone(this, 3, 1);
-        this.pyramid = new MyPyramid(this, 3, 1);
+        this.cone = new MyCone(this, 10, 200);
+        this.pyramid = new MyPyramid(this, 6, 20);
         this.tangram = new MyTangram(this);
         this.cube = new MyUnitCube(this, 5);
         
@@ -34,7 +34,7 @@ class MyScene extends CGFscene {
         this.objectIDs = { 'Plane': 0 , 'Pyramid': 1, 'Cone': 2, 'Tangram': 3, 'Cube': 4};
 
         //Other variables connected to MyInterface
-        this.selectedObject = 3;
+        this.selectedObject = 2;
         this.selectedMaterial = 3;
         this.displayAxis = true;
         this.displayNormals = false;
