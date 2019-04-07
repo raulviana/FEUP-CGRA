@@ -9,8 +9,7 @@ class MyTree extends CGFobject {
 treeTopTexture) {
 		super(scene);
 
-		this.treeTop1 = new MyCone(scene, 8, 1);
-		this.treeTop2 = new MyCone(scene, 8, 1);
+		this.treeTop = new MyCone(scene, 8, 1);
 		this.trunk = new MyCylinder(scene, 8, 1);  
 
 		this.woodMaterial = new CGFappearance(this.scene);
@@ -29,18 +28,18 @@ treeTopTexture) {
 	       
 	       this.scene.pushMatrix();
 	          
-	          this.scene.translate(0, 2.6, 0);
-	          this.scene.scale(1.1, 1.2, 1.1);
+	          this.scene.translate(0, 2.8, 0);
+	          this.scene.scale(1.2, 1.7, 1.2);
 	          this.leafMaterial.apply();
-	          this.treeTop1.display();
+	          this.treeTop.display();
 	       this.scene.popMatrix();
 
 	       this.scene.pushMatrix();
 	          
 	          this.scene.translate(0, 2, 0);
-	          this.scene.scale(1.3, 1.5, 1.3);
+	          this.scene.scale(1.5, 2, 1.5);
 	          this.leafMaterial.apply();
-	          this.treeTop2.display();
+	          this.treeTop.display();
 	       this.scene.popMatrix();
 
 	       this.scene.pushMatrix();

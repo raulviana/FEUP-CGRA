@@ -24,9 +24,12 @@ class MyScene extends CGFscene {
         this.prism = new MyPrism(this, 5, 2);
         this.cube = new MyUnitCube(this);
         this.cilinder = new MyCylinder(this,5, 2);
-        this.tree = new MyTree(this, 5, 5, 10, 18);
-        this.treeRow = new MyTreeRowPatch(this);
-
+        //this.tree = new MyTree(this, 5, 5, 10, 18);
+        //this.treeRow = new MyTreeRowPatch(this);
+        //this.treeGroup = new MyTreeGroupPatch(this);
+        this.house = new MyHouse(this);
+        
+        
         //Objects connected to MyInterface
         this.displayNormals = false;
 
@@ -45,6 +48,10 @@ class MyScene extends CGFscene {
         this.setDiffuse(0.2, 0.4, 0.8, 1.0);
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
+    }
+    //returns random float between -0.5 and 0.5
+    getRandom(){
+        return (Math.random() - 0.5);
     }
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -68,8 +75,11 @@ class MyScene extends CGFscene {
          if (this.displayNormals)
             this.cilinder.enableNormalViz();
 
-        // this.tree.display();
-         this.treeRow.display();
+        //this.tree.display();
+        //this.treeRow.display();
+        //this.treeGroup.display();
+        this.house.display();
+        
   
 
         // ---- END Primitive drawing section

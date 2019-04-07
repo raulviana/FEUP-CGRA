@@ -60,7 +60,12 @@ class MyScene extends CGFscene {
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 10, 10), vec3.fromValues(0, 0, 0));
     }
-
+this.scene.pushMatrix();
+			this.scene.translate(1.1, 0, -1.1);
+			//this.scene.rotate();
+			//this.scene.scale(1, 1.1, 1);
+		    this.column.display();
+		this.scene.popMatrix();
     hexToRgbA(hex)
     {
         var ret;
