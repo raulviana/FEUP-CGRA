@@ -102,7 +102,7 @@ class MyScene extends CGFscene {
     }
 
 
-    initMaterials() {
+   c
         // Red Ambient (no diffuse, no specular)
         this.material1 = new CGFappearance(this);
         this.material1.setAmbient(1, 0, 0, 1.0);

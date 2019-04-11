@@ -24,6 +24,9 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
 
+        this.cords = [];
+        this.floor = new MyQuad(this, this.cords);
+        
         this.treeRow = new MyTreeRowPatch(this);
         this.treeGroup = new MyTreeGroupPatch(this);
         this.house = new MyHouse(this);
@@ -32,12 +35,15 @@ class MyScene extends CGFscene {
         this.mountain3 = new MyVoxelHill(this, 8);
         this.mountain4 = new MyVoxelHill(this, 12);
         this.cubemap = new MyCubeMap(this);
-        
+               
         
         //Objects connected to MyInterface
         this.texture = true;
 
     }
+
+  
+    
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -45,7 +51,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(200, 200, 200), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(70, 70, 70), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -53,6 +59,8 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
+   
     
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -77,6 +85,14 @@ class MyScene extends CGFscene {
             //this.cubemap.enableNormalViz();
         if(this.texture) this.enableTextures(true);
         else this.enableTextures(false);
+
+     
+       this.pushMatrix();
+       this.translate(-30, 0, -30);
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * -20, 0, 1, 0);
+       this.floor.display();
+       this.popMatrix();
 
        this.pushMatrix();
        this.translate(-30, 0, -30);

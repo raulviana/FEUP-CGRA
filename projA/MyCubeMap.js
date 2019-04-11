@@ -16,7 +16,7 @@ class MyCubeMap extends CGFobject {
         this.materialL.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialL.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialL.setShininess(10.0);
-        this.materialL.loadTexture('textures/box_left.tga');
+        this.materialL.loadTexture('textures/box_left.jpg');
         this.materialL.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialR = new CGFappearance(this.scene);
@@ -24,7 +24,7 @@ class MyCubeMap extends CGFobject {
         this.materialR.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialR.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialR.setShininess(10.0);
-        this.materialR.loadTexture('textures/box_right.tga');
+        this.materialR.loadTexture('textures/box_right.jpg');
         this.materialR.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialUp = new CGFappearance(this.scene);
@@ -32,77 +32,69 @@ class MyCubeMap extends CGFobject {
         this.materialUp.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialUp.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialUp.setShininess(10.0);
-        this.materialUp.loadTexture('textures/box_up.png');
+        this.materialUp.loadTexture('textures/box_up.jpg');
         this.materialUp.setTextureWrap('REPEAT', 'REPEAT');
 
-        this.materialBottom = new CGFappearance(this.scene);
+      /*  this.materialBottom = new CGFappearance(this.scene);
         this.materialBottom.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBottom.setShininess(10.0);
-        this.materialBottom.loadTexture('textures/box_down.png');
-        this.materialBottom.setTextureWrap('REPEAT', 'REPEAT');
+        this.materialBottom.loadTexture('textures/box_down.jpg');
+        this.materialBottom.setTextureWrap('REPEAT', 'REPEAT');*/
 
         this.materialFront = new CGFappearance(this.scene);
         this.materialFront.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialFront.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialFront.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialFront.setShininess(10.0);
-        this.materialFront.loadTexture('textures/box_front.png');
+        this.materialFront.loadTexture('textures/box_front.jpg');
         this.materialFront.setTextureWrap('REPEAT', 'REPEAT');
-        
-        this.materialBack = new CGFappearance(this.scene);
-        this.materialBack.setAmbient(0.9, 0.9, 0.9, 1);
-        this.materialBack.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialBack.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialBack.setShininess(10.0);
-        this.materialBack.loadTexture('textures/box_bk.png');
-        this.materialBack.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialBack = new CGFappearance(this.scene);
         this.materialBack.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialBack.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBack.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBack.setShininess(10.0);
-        this.materialBack.loadTexture('textures/box_bk.png');
+        this.materialBack.loadTexture('textures/box_back.jpg');
         this.materialBack.setTextureWrap('REPEAT', 'REPEAT');
 	}
 
 display(){
 
 	this.scene.pushMatrix();
-	this.scene.scale(300, 300, 300);
+	this.scene.scale(150, 150, 150);
 
 	this.scene.pushMatrix();
-	     this.scene.translate(0, 0.5, -0.5);
+	     this.scene.translate(0, 0.4, -0.5);
          this.materialFront.apply();
          this.quad.display();
     this.scene.popMatrix();
 
 	this.scene.pushMatrix();
-	     this.scene.translate(0.5, 0.5, 0);
+	     this.scene.translate(0.5, 0.4, 0);
 	     this.scene.rotate(this.ang2rad * -90, 0, 1, 0);
          this.materialL.apply();
          this.quad.display();
     this.scene.popMatrix();
 
     this.scene.pushMatrix();
-	     this.scene.translate(-0.5, 0.5, 0);
+	     this.scene.translate(-0.5, 0.4, 0);
 	     this.scene.rotate(this.ang2rad * 90, 0, 1, 0);
          this.materialR.apply();
          this.quad.display();
     this.scene.popMatrix();
 
-    this.scene.pushMatrix();
+   /* this.scene.pushMatrix();
 	     this.scene.translate(0, 0, 0);
 	     this.scene.rotate(this.ang2rad * 90, 0, 1, 0);
 	     this.scene.rotate(this.ang2rad * -90, 1, 0, 0);
          this.materialBottom.apply();
          this.quad.display();
-    this.scene.popMatrix();
+    this.scene.popMatrix();*/
 
     this.scene.pushMatrix();
-	     this.scene.translate(0, 0.5, 0.5);
+	     this.scene.translate(0, 0.4, 0.5);
 	     this.scene.rotate(this.ang2rad * -180, 0, 1, 0);
          this.materialBack.apply();
          this.quad.display();
