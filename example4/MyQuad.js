@@ -52,20 +52,28 @@ class MyQuad extends CGFobject {
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
 
-		this.materialSide = new CGFappearance(this.scene);
-        this.materialSide.setAmbient(0.9, 0.9, 0.9, 1);
-        this.materialSide.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.materialSide.setSpecular(0.1, 0.1, 0.1, 1);
-        this.materialSide.setShininess(10.0);
-        this.materialSide.loadTexture('images/mineSide.png');
-        this.materialSide.setTextureWrap('REPEAT', 'REPEAT');
+		this.materialL = new CGFappearance(this.scene);
+        this.materialL.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialL.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialL.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialL.setShininess(10.0);
+        this.materialL.loadTexture('textures/siege_lf.tga');
+        this.materialL.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.materialR = new CGFappearance(this.scene);
+        this.materialR.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialR.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialR.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialR.setShininess(10.0);
+        this.materialR.loadTexture('textures/siege_rf.tga');
+        this.materialR.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialTop = new CGFappearance(this.scene);
         this.materialTop.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialTop.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialTop.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialTop.setShininess(10.0);
-        this.materialTop.loadTexture('images/mineTop.png');
+        this.materialTop.loadTexture('textures/siege_up.tga');
         this.materialTop.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialBottom = new CGFappearance(this.scene);
@@ -73,8 +81,24 @@ class MyQuad extends CGFobject {
         this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBottom.setShininess(10.0);
-        this.materialBottom.loadTexture('images/mineBottom.png');
+        this.materialBottom.loadTexture('textures/siege_dn.tga');
         this.materialBottom.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.materialFront = new CGFappearance(this.scene);
+        this.materialFront.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialFront.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialFront.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialFront.setShininess(10.0);
+        this.materialFront.loadTexture('textures/siege_ft.tga');
+        this.materialFront.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.materialBack = new CGFappearance(this.scene);
+        this.materialBack.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialBack.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialBack.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialBack.setShininess(10.0);
+        this.materialBack.loadTexture('textures/siege_bk.tga');
+        this.materialBack.setTextureWrap('REPEAT', 'REPEAT');
 	}
 
 	/**

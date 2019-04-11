@@ -1,17 +1,17 @@
 /**
- * MyTreeRowatch
+ * MyTreeGroupPatch
  * @constructor
  * @param scene - Reference to MyScene object
  **/
 
-class MyTreeRowPatch extends CGFobject {
+class MyTreeGroupPatch extends CGFobject {
 	constructor(scene) {
         super(scene);
         
-        var trunkTexture = 'nada';
-        var treeTopTexture = 'nada';
+        var trunkTexture = 'textures/wood.jpg';
+        var treeTopTexture = 'textures/leaf.jpg';
 
-        this.tree = new MyTree(scene,5,5,10,18, trunkTexture,treeTopTexture);
+        this.tree = new MyTree(scene,5,5,10,18, trunkTexture, treeTopTexture);
 
     }
 

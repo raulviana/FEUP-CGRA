@@ -11,6 +11,8 @@ class MyScene extends CGFscene {
         this.initCameras();
         this.initLights();
 
+        this.ang2rad = Math.PI/180;
+
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
@@ -21,17 +23,19 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.prism = new MyPrism(this, 5, 2);
-        this.cube = new MyUnitCube(this);
-        this.cilinder = new MyCylinder(this,5, 2);
-        //this.tree = new MyTree(this, 5, 5, 10, 18);
-        //this.treeRow = new MyTreeRowPatch(this);
-        //this.treeGroup = new MyTreeGroupPatch(this);
+
+        this.treeRow = new MyTreeRowPatch(this);
+        this.treeGroup = new MyTreeGroupPatch(this);
         this.house = new MyHouse(this);
+        this.mountain1 = new MyVoxelHill(this, 4);
+        this.mountain2 = new MyVoxelHill(this, 8);
+        this.mountain3 = new MyVoxelHill(this, 8);
+        this.mountain4 = new MyVoxelHill(this, 12);
+        this.cubemap = new MyCubeMap(this);
         
         
         //Objects connected to MyInterface
-        this.displayNormals = false;
+        this.texture = true;
 
     }
     initLights() {
@@ -41,7 +45,7 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(50, 50, 50), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(200, 200, 200), vec3.fromValues(0, 0, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -49,10 +53,7 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-    //returns random float between -0.5 and 0.5
-    getRandom(){
-        return (Math.random() - 0.5);
-    }
+    
     display() {
         // ---- BEGIN Background, camera and axis setup
         // Clear image and depth buffer everytime we update the scene
@@ -72,14 +73,107 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
 
-         if (this.displayNormals)
-            this.cilinder.enableNormalViz();
+         
+            //this.cubemap.enableNormalViz();
+        if(this.texture) this.enableTextures(true);
+        else this.enableTextures(false);
 
-        //this.tree.display();
-        //this.treeRow.display();
-        //this.treeGroup.display();
-        this.house.display();
+       this.pushMatrix();
+       this.translate(-30, 0, -30);
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * -20, 0, 1, 0);
+       this.treeRow.display();
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.scale(1.3, 1.3, 1.3);
+       this.rotate(this.ang2rad * 85, 0, 1, 0);
+       this.house.display();
+       this.popMatrix();
         
+       this.pushMatrix();
+       this.translate(-15, 0, 50)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * -20, 0, 1, 0);
+       this.treeRow.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(-25, 0, 40)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * 95, 0, 1, 0);
+       this.treeRow.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(-13, 0, 45)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * 92, 0, 1, 0);
+       this.treeRow.display();  
+       this.popMatrix();
+       
+       this.pushMatrix();
+       this.translate(35, 0, -20)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * 92, 0, 1, 0);
+       this.treeGroup.display();  
+       this.popMatrix();
+
+        
+       this.pushMatrix();
+       this.translate(85, 0, 20)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * 92, 0, 1, 0);
+       this.treeGroup.display();  
+       this.popMatrix();
+
+        
+       this.pushMatrix();
+       this.translate(15, 0, 45)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * 70, 0, 1, 0);
+       this.treeGroup.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(55, 0, 55)
+       this.scale(3, 3, 3);
+       this.rotate(this.ang2rad * 55, 0, 1, 0);
+       this.treeGroup.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(-40, 0, -55)
+       this.rotate(this.ang2rad * 3, 0, 1, 0);
+       this.scale(3, 3, 3);
+       this.mountain1.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(-20, 0, -70)
+       this.rotate(this.ang2rad * 20, 0, 1, 0);
+       this.scale(3, 3, 3);
+       this.mountain2.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(-75, 0, -5);
+       this.rotate(this.ang2rad * 12, 0, 1, 0);
+       this.scale(3,3, 3);
+       this.mountain3.display();  
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.translate(-95, 0, -50)
+       this.rotate(this.ang2rad * 6, 0, 1, 0);
+       this.scale(3, 3, 3);
+       this.mountain4.display();  
+       this.popMatrix();
+
+        
+       this.cubemap.display();
+     
+       
   
 
         // ---- END Primitive drawing section

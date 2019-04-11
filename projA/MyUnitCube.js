@@ -6,94 +6,82 @@
 class MyUnitCube extends CGFobject {
 	constructor(scene) {
 		super(scene);
-		this.initBuffers();
+	
+		this.quad = new MyQuad(this.scene);
+
+		this.ang2rad = Math.PI/180;
+
+		this.materialSide = new CGFappearance(this.scene);
+        this.materialSide.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialSide.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialSide.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialSide.setShininess(10.0);
+        this.materialSide.loadTexture('textures/mineSide.png');
+        this.materialSide.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.materialTop = new CGFappearance(this.scene);
+        this.materialTop.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialTop.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialTop.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialTop.setShininess(10.0);
+        this.materialTop.loadTexture('textures/mineTop.png');
+        this.materialTop.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.materialBottom = new CGFappearance(this.scene);
+        this.materialBottom.setAmbient(0.9, 0.9, 0.9, 1);
+        this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
+        this.materialBottom.setShininess(10.0);
+        this.materialBottom.loadTexture('textures/mineBottom.png');
+        this.materialBottom.setTextureWrap('REPEAT', 'REPEAT');
 	}
-	initBuffers() {
-		this.vertices = [
-			-0.5, -0.5,  0.5,	//0
-			 0.5, -0.5,  0.5,	//1
-			 0.5,  0.5,  0.5,	//2
-			-0.5,  0.5,  0.5,	//3
-			 0.5, -0.5, -0.5,   //4
-			 0.5,  0.5, -0.5,   //5
-			-0.5,  0.5, -0.5,   //6
-			-0.5, -0.5, -0.5,   //7
-			//tripling vertices in order to link more than one normal to each one
-			-0.5, -0.5,  0.5,	//
-			 0.5, -0.5,  0.5,	//
-			 0.5,  0.5,  0.5,	//
-			-0.5,  0.5,  0.5,	//
-			 0.5, -0.5, -0.5,   //
-			 0.5,  0.5, -0.5,   //
-			-0.5,  0.5, -0.5,   //
-			-0.5, -0.5, -0.5,    //
-			-0.5, -0.5,  0.5,	//
-			 0.5, -0.5,  0.5,	//
-			 0.5,  0.5,  0.5,	//
-			-0.5,  0.5,  0.5,	//
-			 0.5, -0.5, -0.5,   //
-			 0.5,  0.5, -0.5,   //
-			-0.5,  0.5, -0.5,   //
-			-0.5, -0.5, -0.5    //
-		];
 
-		//Counter-clockwise reference of vertices
-		this.indices = [
-			0, 1, 3,
-			3, 1, 2,
+display(){
+  
+        //sides
+         this.scene.pushMatrix();
+         this.scene.translate(0, 0, 0.5);
+         this.materialSide.apply();
+         this.quad.display();
+         this.scene.popMatrix();
 
-			2, 1, 4,
-			4, 5, 2,
+         this.scene.pushMatrix();
+         this.scene.translate(0.5, 0, 0);
+         this.scene.rotate(90 * this.ang2rad, 0, 1, 0);
+         this.quad.display();
+         this.scene.popMatrix();
 
-			2, 5, 6,
-			6, 3, 2, 
+         this.scene.pushMatrix();
+         this.scene.translate(-0.5, 0, 0);
+         this.scene.rotate(-90 * this.ang2rad, 0, 1, 0);
+         this.quad.display();
+         this.scene.popMatrix();
 
-			0, 3, 7, 
-			7, 3, 6, 
+         this.scene.pushMatrix();
+         this.scene.translate(0, 0, -0.5);
+         this.scene.rotate(180 * this.ang2rad, 0, 1, 0);
+         this.quad.display();
+         this.scene.popMatrix();
 
-			0, 7, 1, 
-			7, 4, 1,
-			 
-			7, 6, 5,
-			5, 4, 7 
-		];
 
-        //creating three normals to each vertice
-		this.normals = [
-            0, 0, 1, 
-            0, 0, 1,
-            0, 0, 1, 
-            0, 0, 1,
+       //top
+         this.scene.pushMatrix();
+         this.scene.translate(0, 0.5, 0);
+         this.scene.rotate(-90 * this.ang2rad, 1, 0, 0);
+         this.materialTop.apply();
+         this.quad.display();
+         this.scene.popMatrix();
 
-            0, 0, -1,
-            0, 0, -1, 
-            0, 0, -1, 
-            0, 0, -1,
-            
-           -1, 0, 0,
-            1, 0, 0, 
-            1, 0, 0, 
-           -1, 0, 0,
+       //down
+         this.scene.pushMatrix();
+         this.scene.translate(0, -0.5, 0);
+         this.scene.rotate(90 * this.ang2rad, 1, 0, 0);
+         this.materialBottom.apply();
+         this.quad.display();
+         this.scene.popMatrix();
 
-            1, 0, 0, 
-            1, 0, 0,
-           -1, 0, 0, 
-           -1, 0, 0, 
+}
 
-            0, -1, 0,
-            0, -1, 0, 
-            0,  1, 0, 
-            0,  1, 0,
-
-            0, -1, 0, 
-            0,  1, 0,
-            0,  1, 0, 
-            0, -1, 0
-		]
-		this.primitiveType = this.scene.gl.TRIANGLES;
-		this.initGLBuffers();
-		
-	}
 	
 	
 }

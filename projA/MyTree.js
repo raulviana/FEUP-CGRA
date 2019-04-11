@@ -15,12 +15,16 @@ treeTopTexture) {
 		this.woodMaterial = new CGFappearance(this.scene);
     	this.woodMaterial.setDiffuse(0.8,0.8,0.8,1);
     	this.woodMaterial.setSpecular(0.2,0.2,0.2,1);
-    	this.woodMaterial.setShininess(15); 
+    	this.woodMaterial.setShininess(15);
+    	this.woodMaterial.loadTexture(trunkTexture);
+        this.woodMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
     	this.leafMaterial = new CGFappearance(this.scene);
     	this.leafMaterial.setDiffuse(0.9,0.9,0.9,1);
     	this.leafMaterial.setSpecular(0.1,0.1,0.1,1);
-    	this.leafMaterial.setShininess(15);      
+    	this.leafMaterial.setShininess(15);    
+    	this.leafMaterial.loadTexture(treeTopTexture);
+        this.leafMaterial.setTextureWrap('REPEAT', 'REPEAT');  
         
 }
  
