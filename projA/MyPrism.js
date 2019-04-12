@@ -8,7 +8,6 @@ class MyPrism extends CGFobject {
 	constructor(scene, slices, stacks) {
 		super(scene);
 	    
-
 	    this.slices = slices;
 		this.stacks = stacks;
 

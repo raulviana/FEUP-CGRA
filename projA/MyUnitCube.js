@@ -12,7 +12,6 @@ class MyUnitCube extends CGFobject {
 		this.ang2rad = Math.PI/180;
 
 		this.materialSide = new CGFappearance(this.scene);
-        this.materialSide.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialSide.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialSide.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialSide.setShininess(10.0);
@@ -20,7 +19,6 @@ class MyUnitCube extends CGFobject {
         this.materialSide.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialTop = new CGFappearance(this.scene);
-        this.materialTop.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialTop.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialTop.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialTop.setShininess(10.0);
@@ -28,7 +26,6 @@ class MyUnitCube extends CGFobject {
         this.materialTop.setTextureWrap('REPEAT', 'REPEAT');
 
         this.materialBottom = new CGFappearance(this.scene);
-        this.materialBottom.setAmbient(0.9, 0.9, 0.9, 1);
         this.materialBottom.setDiffuse(0.9, 0.9, 0.9, 1);
         this.materialBottom.setSpecular(0.1, 0.1, 0.1, 1);
         this.materialBottom.setShininess(10.0);

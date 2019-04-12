@@ -14,12 +14,11 @@ class MyHouse extends CGFobject {
 
         this.ceiling = new MyPyramid(scene, 4, 1);
         this.quad = new MyQuad(scene);
-        this.column = new MyPrism(scene, 5, 1);
+        this.column = new MyPrism(scene, 6, 1);
 
         this.ang2rad = Math.PI/180;
 
         this.marbleHouseMat = new CGFappearance(this.scene);
-        this.marbleHouseMat.setAmbient(0.9, 0.9, 0.9, 1);
         this.marbleHouseMat.setDiffuse(0.1, 0.1, 0.1, 1);
         this.marbleHouseMat.setSpecular(0.9, 0.9, 0.9, 1);
         this.marbleHouseMat.setShininess(10.0);
@@ -27,7 +26,6 @@ class MyHouse extends CGFobject {
         this.marbleHouseMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.yellowHouseMat = new CGFappearance(this.scene);
-        this.yellowHouseMat.setAmbient(0.9, 0.9, 0.9, 1);
         this.yellowHouseMat.setDiffuse(0.9, 0.9, 0.9, 1);
         this.yellowHouseMat.setSpecular(0.1, 0.1, 0.1, 1);
         this.yellowHouseMat.setShininess(10.0);
@@ -35,7 +33,6 @@ class MyHouse extends CGFobject {
         this.yellowHouseMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.tileHouseMat = new CGFappearance(this.scene);
-        this.tileHouseMat.setAmbient(0.9, 0.9, 0.9, 1);
         this.tileHouseMat.setDiffuse(0.5, 0.5, 0.5, 1);
         this.tileHouseMat.setSpecular(0.8, 0.8, 0.8, 1);
         this.tileHouseMat.setShininess(10.0);
@@ -43,7 +40,6 @@ class MyHouse extends CGFobject {
         this.tileHouseMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.doorMat = new CGFappearance(this.scene);
-        this.doorMat.setAmbient(0.9, 0.9, 0.9, 1);
         this.doorMat.setDiffuse(0.9, 0.9, 0.9, 1);
         this.doorMat.setSpecular(0.2, 0.2, 0.2, 1);
         this.doorMat.setShininess(10.0);
@@ -51,7 +47,6 @@ class MyHouse extends CGFobject {
         this.doorMat.setTextureWrap('REPEAT', 'REPEAT');
 
         this.windowHouseMat = new CGFappearance(this.scene);
-        this.windowHouseMat.setAmbient(0.9, 0.9, 0.9, 1);
         this.windowHouseMat.setDiffuse(0.2, 0.2, 0.2, 1);
         this.windowHouseMat.setSpecular(0.9, 0.9, 0.9, 1);
         this.windowHouseMat.setShininess(10.0);
