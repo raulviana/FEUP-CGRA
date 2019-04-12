@@ -24,7 +24,11 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
 
-        this.cords = [];
+        this.cords = [0, 0,
+                      0, 15,
+                      15, 0, 
+                      15, 15
+                      ];
         this.floor = new MyQuad(this, this.cords);
         
         this.treeRow = new MyTreeRowPatch(this);
@@ -35,20 +39,68 @@ class MyScene extends CGFscene {
         this.mountain3 = new MyVoxelHill(this, 8);
         this.mountain4 = new MyVoxelHill(this, 12);
         this.cubemap = new MyCubeMap(this);
+        this.firePit = new MyCone(this, 8, 1);
                
         
         //Objects connected to MyInterface
         this.texture = true;
+        this.daylight = false;
 
+
+        //Scene materials
+        this.floorAppearance = new CGFappearance(this);
+        this.floor.updateTexCoords(this.cords);
+    	this.floorAppearance.loadTexture('/textures/grass.jpg');
+    	this.floorAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
+		this.floorAppearance.setDiffuse(0.9 , 0.9 , 0.9 , 1);
+		this.floorAppearance.setSpecular(0.55 , 0.55 , 0.55 , 1);
+		this.floorAppearance.setShininess(100);
+
+		this.firePitAppearance = new CGFappearance(this);
+    	this.firePitAppearance.loadTexture('/textures/lava.jpg');
+    	this.firePitAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
+		this.firePitAppearance.setDiffuse(0.5 , 0.5 , 0.5 , 1);
+		this.firePitAppearance.setSpecular(0.5 , 0.5 , 0.5 , 1);
+		this.firePitAppearance.setShininess(500);
     }
 
   
     
     initLights() {
-        this.lights[0].setPosition(15, 2, 5, 1);
-        this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
-        this.lights[0].enable();
+        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
+       
+        //lua
+        this.lights[0].setPosition(5, 100, 5, 1);
+        this.lights[0].setDiffuse(255/255, 255/254, 255/198, 1.0);
+        this.lights[0].setSpecular(255/255, 255/254, 255/198, 1.0);
+       // this.lights[0].enable();
+        this.lights[0].setVisible(true);
+        this.lights[0].setConstantAttenuation(0.2);
+		this.lights[0].setLinearAttenuation(0.0);
+		this.lights[0].setQuadraticAttenuation(0.0);
         this.lights[0].update();
+
+        //sol
+        this.lights[1].setPosition(5, 100, -10, 1);
+        this.lights[1].setDiffuse(255/222, 255/254, 255/255, 1.0);
+        this.lights[1].setSpecular(255/222, 255/254, 255/255, 1.0);
+        //this.lights[1].disable();
+        this.lights[1].setVisible(true);
+        this.lights[1].setConstantAttenuation(0.2);
+		this.lights[1].setLinearAttenuation(0.0);
+		this.lights[1].setQuadraticAttenuation(0.0);
+        this.lights[1].update();
+
+        //fogueira
+        this.lights[2].setPosition(30, 2.2, 0, 1);
+        this.lights[2].setDiffuse(255/255, 235/255, 204/255, 1.0)
+        this.lights[2].setSpecular(255/255, 235/255, 204/255, 1.0);
+        //this.lights[2].disable();
+        this.lights[2].setVisible(false);
+        this.lights[2].setConstantAttenuation(0.0);
+		this.lights[2].setLinearAttenuation(1.0);
+		this.lights[2].setQuadraticAttenuation(0.0);
+        this.lights[2].update();
     }
     initCameras() {
         this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(70, 70, 70), vec3.fromValues(0, 0, 0));
@@ -59,8 +111,6 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-
-   
     
     display() {
         // ---- BEGIN Background, camera and axis setup
@@ -73,6 +123,10 @@ class MyScene extends CGFscene {
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
 
+        this.lights[0].update();
+        this.lights[1].update();
+        this.lights[2].update();
+
         // Draw axis
         this.axis.display();
 
@@ -82,15 +136,38 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
          
-            //this.cubemap.enableNormalViz();
+            
         if(this.texture) this.enableTextures(true);
         else this.enableTextures(false);
 
-     
+        if(this.daylight){
+            this.lights[0].disable();
+            this.lights[1].enable();
+            this.lights[2].disable();
+            this.lights[0].update();
+            this.lights[1].update();
+            this.lights[2].update();
+        }
+        else{
+            this.lights[0].enable();
+            this.lights[1].disable();
+            this.lights[2].enable(); 
+            this.lights[0].update();
+            this.lights[1].update();
+            this.lights[2].update();
+        }
+       
        this.pushMatrix();
-       this.translate(-30, 0, -30);
-       this.scale(3, 3, 3);
-       this.rotate(this.ang2rad * -20, 0, 1, 0);
+       this.translate(30, 0, 0);
+       this.scale(2, 2, 2);
+       this.firePitAppearance.apply();
+       this.firePit.display();
+       this.popMatrix();
+
+       this.pushMatrix();
+       this.scale(350, 350, 350);
+       this.rotate(this.ang2rad * -90, 1, 0, 0);
+       this.floorAppearance.apply();
        this.floor.display();
        this.popMatrix();
 

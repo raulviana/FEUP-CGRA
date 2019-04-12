@@ -7,8 +7,8 @@ class MyQuad extends CGFobject {
 	constructor(scene, coords) {
 		super(scene);
 		this.initBuffers();
-		//if (coords != undefined)
-			//this.updateTexCoords(coords);
+		if (coords != undefined)
+			this.updateTexCoords(coords);
 	}
 	
 	initBuffers() {
@@ -60,10 +60,10 @@ class MyQuad extends CGFobject {
 	 * Updates the list of texture coordinates of the quad
 	 * @param {Array} coords - Array of texture coordinates
 	 */
-	/*updateTexCoords(coords) {
+	updateTexCoords(coords) {
 		this.texCoords = [...coords];
 		this.updateTexCoordsGLBuffers();
-	}*/
+	}
 
     	
 }
