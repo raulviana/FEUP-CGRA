@@ -2,15 +2,15 @@
 precision highp float;
 #endif
 
-varying vec4 coords;
-varying vec4 normal;
+varying vec3 position;
 
 void main() {
-	if (coords.x > 0.0)
-		gl_FragColor =  normal;
-	else
-	{
-		gl_FragColor.rgb = abs(coords.xyz)/3.0;
+	if (position.y >= 0.5){
+		gl_FragColor.rgb =  vec3(1.0, 1.0, 0);
+		gl_FragColor.a = 1.0;
+	}
+	else{
+		gl_FragColor.rgb = vec3(0, 0, 1.0);
 		gl_FragColor.a = 1.0;
 	}
 }

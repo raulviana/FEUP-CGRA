@@ -34,8 +34,10 @@ class MyScene extends CGFscene {
                       1, 0, 
                       1, 1];
 
-        this.floor = new MyQuad(this, this.floorcords);
+       // this.floor = new MyQuad(this, this.floorcords);
         this.pitTop = new MyQuad(this, this.cords);
+
+        this.floor = new Plane(this, 50, 0, 20, 0, 20);
         
         this.treeRow = new MyTreeRowPatch(this);
         this.treeGroup = new MyTreeGroupPatch(this);
@@ -56,7 +58,7 @@ class MyScene extends CGFscene {
 
         //Scene materials
         this.floorAppearance = new CGFappearance(this);
-        this.floor.updateTexCoords(this.floorcords);
+       // this.floor.updateTexCoords(this.floorcords);
     	this.floorAppearance.loadTexture('/textures/grass.jpg');
     	this.floorAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
 		this.floorAppearance.setDiffuse(0.6 , 0.6 , 0.6 , 1);
@@ -67,7 +69,7 @@ class MyScene extends CGFscene {
     	this.firePitAppearance.loadTexture('/textures/lava.jpg');
     	this.firePitAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
 		this.firePitAppearance.setDiffuse(0.5 , 0.5 , 0.5 , 1);
-		this.firePitAppearance.setSpecular(0.5 , 0.5 , 0.5 , 1);
+		this.firePitAppearance.setSpecular(0.8 , 0.8 , 0.8 , 1);
 		this.firePitAppearance.setShininess(500);
 
 		this.fireStoneAppearance = new CGFappearance(this);
@@ -96,8 +98,8 @@ class MyScene extends CGFscene {
 
         //sol
         this.lights[1].setPosition(5, 100, 50, 1);
-        this.lights[1].setDiffuse(222/255, 254/255, 255/255, 1.0);
-        this.lights[1].setSpecular(222/255, 254/255, 255/255, 1.0);
+        this.lights[1].setDiffuse(212/255, 244/255, 245/255, 1.0);
+        this.lights[1].setSpecular(212/255, 244/255, 245/255, 1.0);
         this.lights[1].enable();
         this.lights[1].setVisible(true);
         this.lights[1].setConstantAttenuation(0.05);
@@ -106,7 +108,7 @@ class MyScene extends CGFscene {
         this.lights[1].update();
 
         //fogueira
-        this.lights[2].setPosition(20, 2.1, 0, 1);
+        this.lights[2].setPosition(25, 2.8, 0, 1);
         this.lights[2].setAmbient(0.8, 0.8,0.8,1);
         this.lights[2].setDiffuse(255/255, 117/255, 26/255, 1.0)
         this.lights[2].setSpecular(255/255, 117/255, 26/255, 1.0);
@@ -115,10 +117,11 @@ class MyScene extends CGFscene {
         this.lights[2].setConstantAttenuation(0.0);
 		this.lights[2].setLinearAttenuation(0.1);
 		this.lights[2].setQuadraticAttenuation(0.0);
+		this.lights[2].setSpotCutOff(360);
         this.lights[2].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(55, 55, 55), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(125, 65, 75), vec3.fromValues(5, 10, 0));
     }
     setDefaultAppearance() {
         this.setAmbient(0.2, 0.4, 0.8, 1.0);
