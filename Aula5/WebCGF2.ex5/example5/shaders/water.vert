@@ -17,7 +17,12 @@ void main() {
 	
 	vTextureCoord = aTextureCoord;
 
-	offset=aVertexNormal * texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord).r * 0.1;
+	offset=vec3(0.0, 0.0, texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord + vec2(timeFactor * 0.008, 0.0)).g * 0.03);
 
 	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition+offset, 1.0);
 }
+
+
+
+
+//offset=aVertexNormal * texture2D(uSampler2, vec2(0.0,0.1)+vTextureCoord + vec2(timeFactor * 0.01, timeFactor *0.005)).g * 0.05;
