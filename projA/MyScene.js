@@ -61,8 +61,8 @@ class MyScene extends CGFscene {
        // this.floor.updateTexCoords(this.floorcords);
     	this.floorAppearance.loadTexture('/textures/grass.jpg');
     	this.floorAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
-		this.floorAppearance.setDiffuse(0.6 , 0.6 , 0.6 , 1);
-		this.floorAppearance.setSpecular(0.55 , 0.55 , 0.55 , 1);
+		this.floorAppearance.setDiffuse(0.8 , 0.8 , 0.8 , 1);
+		this.floorAppearance.setSpecular(0.2 , 0.2 , 0.2 , 1);
 		this.floorAppearance.setShininess(100);
 
 		this.firePitAppearance = new CGFappearance(this);

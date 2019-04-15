@@ -7,8 +7,11 @@ varying vec2 vTextureCoord;
 uniform sampler2D uSampler;
 uniform sampler2D uSampler2;
 
-void main() {
-	vec4 color = texture2D(uSampler2, vTextureCoord);
+uniform float timeFactor;
 
+
+void main() {
+	vec4 color = texture2D(uSampler, vTextureCoord + vec2(timeFactor * 0.01, 0.0));
+	
 	gl_FragColor = color;
 }
