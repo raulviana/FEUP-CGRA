@@ -1,10 +1,10 @@
 /**
- * MyLPlant
+ * MyLSPlant
  * @constructor
  * @param scene - Reference to MyScene object
  */
 
-class MyLPlant extends CGFobject {
+class MyLSPlant extends CGFobject {
 	constructor(scene) {
         super(scene);
         this.init();
