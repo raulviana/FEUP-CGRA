@@ -106,6 +106,26 @@ class MyLSPlant extends CGFobject {
                     this.scene.popMatrix();
                     break;
 
+                case "#":
+                    //rotacao sentido positivo dos XX
+                    this.scene.rotate(this.angle, 1, 0, 0);
+                    break;
+                    
+                case "/":
+                   //rotação sentido negativo sobre XX
+                   this.scene.rotate(-this.angle, 1, 0, 0);
+                   break;
+
+                case "^":
+                   //rotacao sentido positivo nos YY
+                   this.scene.rotate(this.angle, 0, 1, 0);
+                   break;
+
+                case "&":
+                   //rotacao sentido negativo nos YY
+                   this.scene.rotate(-this.angle, 0, 1, 0);
+                   break;
+
                 // processa primitiva definida na gramatica, se existir
                 default:
                     var primitive=this.grammar[this.axiom[i]];

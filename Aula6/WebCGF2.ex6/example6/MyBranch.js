@@ -11,10 +11,10 @@ class MyBranch extends CGFobject {
 		this.stacks = stacks;
 
 		
-	/*	this.material = new CGFappearance(this.scene);
-    	this.material.setDiffuse(0,227/255, 90/255,1);
-    	this.material.setSpecular(0,72/255,0,1);
-    	this.material.setShininess(15);*/
+		this.material = new CGFappearance(this.scene);
+    	this.material.setDiffuse(128/255, 43/255, 0, 1);
+    	this.material.setSpecular(14/255, 12/255, 11/255, 1);
+    	this.material.setShininess(15);
 
 		this.initBuffers();
 	};
@@ -26,7 +26,9 @@ class MyBranch extends CGFobject {
 		this.normals = [];
 		this.texCoords = [];
 
-		var step_angle = 2*Math.PI/this.slices;
+
+		var step_angle = 2*Math.PI/this.
+		slices;
 		var stack_step = 1/this.stacks;
 
 		for(var i = 0; i <= this.slices; ++i) {
@@ -63,12 +65,13 @@ class MyBranch extends CGFobject {
 		this.initGLBuffers();
 	};
 
-/*  display(){
+  display(){
   	this.scene.pushMatrix();
-  	//this.material.apply();
-  	this.display();
+  	this.scene.scale(0.06, 1, 0.06);
+  	this.material.apply();
+  	super.display();
   	this.scene.popMatrix();
-  }  */
+  }
 }
 
 
