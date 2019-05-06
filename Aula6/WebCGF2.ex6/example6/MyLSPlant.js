@@ -17,12 +17,13 @@ class MyLSPlant extends CGFobject {
     }
 
     // cria o lexico da gramática
-  initGrammar(){
-         this.grammar = {
-                "F": new MyBranch(this.scene),
-                "X": new MyLeaf(this.scene)
-                };
-         };
+    initGrammar(){
+        this.grammar = {
+            "F": new MyBranch(this.scene, 4, 1),
+            "X": new MyLeaf(this.scene, 0.5, 0.5)
+        };
+    }
+
 
     // gera o sistema L com os par�metros atuais da cena
     generate(_axiom, _productions, _angle, _iterations, _scale){

@@ -12,8 +12,8 @@ class MyRectangle extends CGFobject {
 		this.y = y;
 
 		this.material = new CGFappearance(this.scene);
-    	this.material.setDiffuse(0,227/255, 90/255,1);
-    	this.material.setSpecular(0,72/255,0,1);
+    	this.material.setDiffuse(128/255,43/255, 0,1);
+    	this.material.setSpecular(26/255,9/255,0,1);
     	this.material.setShininess(15);
 
 		this.initBuffers();
@@ -72,7 +72,11 @@ class MyRectangle extends CGFobject {
 		this.texCoords = [...coords];
 		this.updateTexCoordsGLBuffers();
 	}
+/*	display(){
+		this.material.apply();
+		//this.display();
+	}
 
-	
+	*/
 }
 

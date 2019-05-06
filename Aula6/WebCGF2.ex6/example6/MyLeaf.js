@@ -11,10 +11,10 @@ class MyLeaf extends CGFobject {
 		this.x = x;
 		this.y = y;
 
-		this.material = new CGFappearance(this.scene);
+	/*	this.material = new CGFappearance(this.scene);
     	this.material.setDiffuse(0,227/255, 90/255,1);
     	this.material.setSpecular(0,72/255,0,1);
-    	this.material.setShininess(15);
+    	this.material.setShininess(15);*/
     
 
 		this.initBuffers();
@@ -24,9 +24,9 @@ class MyLeaf extends CGFobject {
 	
 	initBuffers() {
 		this.vertices = [
-		    0, 0.5*this.y, 0,	//0
-			-0.5*this.x, 0, 0,	//1
-		   0.5*this.x, 0, 0,	//2
+		    0, 1*this.y, 0,	//0
+			0, 0, 0,	//1
+		    1*this.x, 0, 0,	//2
 		];
 
 		//reference of vertices
@@ -77,11 +77,13 @@ class MyLeaf extends CGFobject {
 		this.updateTexCoordsGLBuffers();
 	}
 
-	display(){
-			this.material.apply();
-	
-			
-	}
+	/*  display(){
+  	this.scene.pushMatrix();
+  	//this.material.apply();
+  	this.display();
+  	this.scene.popMatrix();
+  }  */
+
 
 }
       

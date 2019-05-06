@@ -10,11 +10,11 @@ class MyBranch extends CGFobject {
 	    this.slices = slices;
 		this.stacks = stacks;
 
-		this.woodMaterial = new CGFappearance(this.scene);
-    	this.woodMaterial.setDiffuse(0.8,0.8,0.8,1);
-    	this.woodMaterial.setSpecular(0.2,0.2,0.2,1);
-    	this.woodMaterial.setShininess(15);
-    	this.woodMaterial.apply();
+		
+	/*	this.material = new CGFappearance(this.scene);
+    	this.material.setDiffuse(0,227/255, 90/255,1);
+    	this.material.setSpecular(0,72/255,0,1);
+    	this.material.setShininess(15);*/
 
 		this.initBuffers();
 	};
@@ -57,9 +57,18 @@ class MyBranch extends CGFobject {
 				);
 			}
 		}
-	}
 
-    
+
+		this.primitiveType = this.scene.gl.TRIANGLES;
+		this.initGLBuffers();
+	};
+
+/*  display(){
+  	this.scene.pushMatrix();
+  	//this.material.apply();
+  	this.display();
+  	this.scene.popMatrix();
+  }  */
 }
 
 
