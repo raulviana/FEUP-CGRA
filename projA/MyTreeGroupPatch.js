@@ -8,8 +8,8 @@ class MyTreeGroupPatch extends CGFobject {
 	constructor(scene) {
         super(scene);
         
-        var trunkTexture = 'textures/wood.jpg';
-        var treeTopTexture = 'textures/leaf.jpg';
+        var trunkTexture = './textures/wood.jpg';
+        var treeTopTexture = './textures/leaf.jpg';
 
         this.tree = new MyTree(scene,5,5,10,18, trunkTexture, treeTopTexture);
 

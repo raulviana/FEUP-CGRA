@@ -114,7 +114,10 @@ class MyBird extends CGFobject {
 
           //Dta
         this.scene.pushMatrix();
-          this.scene.translate(-0.5, 2, -0.2);
+           this.scene.translate(-0.5, 2, -0.2);
+           this.scene.scale(1, 1, -1);
+           this.scene.rotate(this.ang2rad * 225, 0, 1, 0);
+          this.scene.rotate(this.ang2rad *90, 1, 0, 0);
           
           
         

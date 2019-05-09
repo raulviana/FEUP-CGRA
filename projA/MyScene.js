@@ -59,21 +59,21 @@ class MyScene extends CGFscene {
         //Scene materials
         this.floorAppearance = new CGFappearance(this);
        // this.floor.updateTexCoords(this.floorcords);
-    	this.floorAppearance.loadTexture('/textures/grass.jpg');
+    	this.floorAppearance.loadTexture('./textures/grass.jpg');
     	this.floorAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
 		this.floorAppearance.setDiffuse(0.8 , 0.8 , 0.8 , 1);
 		this.floorAppearance.setSpecular(0.2 , 0.2 , 0.2 , 1);
 		this.floorAppearance.setShininess(100);
 
 		this.firePitAppearance = new CGFappearance(this);
-    	this.firePitAppearance.loadTexture('/textures/lava.jpg');
+    	this.firePitAppearance.loadTexture('./textures/lava.jpg');
     	this.firePitAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
 		this.firePitAppearance.setDiffuse(0.5 , 0.5 , 0.5 , 1);
 		this.firePitAppearance.setSpecular(0.8 , 0.8 , 0.8 , 1);
 		this.firePitAppearance.setShininess(500);
 
 		this.fireStoneAppearance = new CGFappearance(this);
-    	this.fireStoneAppearance.loadTexture('/textures/stone.jpg');
+    	this.fireStoneAppearance.loadTexture('./textures/stone.jpg');
     	this.fireStoneAppearance.setTextureWrap('REPEAT', 'REPEAT'); 
 		this.fireStoneAppearance.setDiffuse(0.6 , 0.6 , 0.6 , 1);
 		this.fireStoneAppearance.setSpecular(0.1 , 0.1 , 0.1 , 1);
