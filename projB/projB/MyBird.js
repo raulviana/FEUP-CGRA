@@ -12,6 +12,7 @@ class MyBird extends CGFobject {
         this.cube = new MyUnitCube(scene);
         this.cone = new MyCone(scene, 4, 1);
         this.cylinder = new MyCylinder(scene, 4, 1);
+        this.triangle = new MyBigTriangle(scene);
 
         this.materialBody = new CGFappearance(this.scene);
         this.materialBody.setDiffuse(0.1, 0.1, 0.1, 1);
@@ -78,19 +79,72 @@ class MyBird extends CGFobject {
           this.cone.display();
         this.scene.popMatrix();
 
+        //Rabo
         this.scene.pushMatrix();
           this.scene.translate(0, 2.5, -0.8);
           this.scene.rotate(this.ang2rad * 40, 1, 0, 0);
           this.scene.scale(0.3, 0.01, 0.8);
-
           this.cube.display();
         this.scene.popMatrix();
 
+        //Asas
+          //Esq
+        this.scene.pushMatrix();
+          this.scene.translate(0.5, 2, -0.2);
+          this.scene.rotate(this.ang2rad * 45, 0, 1, 0);
+          this.scene.rotate(this.ang2rad *90, 1, 0, 0);
+        
+        this.scene.pushMatrix();
+          this.scene.rotate(this.ang2rad * 20, 0, 1, 0);
+          this.scene.rotate(this.ang2rad * -20, 1, 0, 0);
+          this.scene.scale(0.3, 0.3, 1);
+          this.triangle.display();
+        this.scene.popMatrix();
 
+        this.scene.pushMatrix();
+          this.scene.translate(0.48, 0.56, 0);
+          this.scene.rotate(this.ang2rad * -20, 0, 1, 0);
+          this.scene.rotate(this.ang2rad *20, 1, 0, 0);
+          this.scene.rotate(this.ang2rad * 180, 0, 0, 1);
+          this.scene.scale(0.3, 0.3, 1);
+          this.triangle.display();
+         this.scene.popMatrix();
+
+        this.scene.popMatrix();
+
+          //Dta
+        this.scene.pushMatrix();
+          this.scene.translate(-0.5, 2, -0.2);
+          
+          
+        
+        
+        this.scene.pushMatrix();
+          this.scene.rotate(this.ang2rad * 20, 0, 1, 0);
+          this.scene.rotate(this.ang2rad * -20, 1, 0, 0);
+          this.scene.scale(0.3, 0.3, 1);
+          this.triangle.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+          this.scene.translate(0.48, 0.56, 0);
+          this.scene.rotate(this.ang2rad * -20, 0, 1, 0);
+          this.scene.rotate(this.ang2rad *20, 1, 0, 0);
+          this.scene.rotate(this.ang2rad * 180, 0, 0, 1);
+          this.scene.scale(0.3, 0.3, 1);
+          this.triangle.display();
+         this.scene.popMatrix();
+
+        this.scene.popMatrix();
+
+                
+        
+        //cubo unitario para escala
         this.scene.pushMatrix();
           this.scene.translate(3, 2.5, 0);
           this.cube.display();
         this.scene.popMatrix();
+
 
         
         this.scene.popMatrix();
