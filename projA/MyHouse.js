@@ -8,9 +8,9 @@ class MyHouse extends CGFobject {
 	constructor(scene) {
         super(scene);
         
-        var cubeTexture = '/textures/yellow.jpg';
-        var columnTexture = '/textures/marble.jpg';
-        var ceilingTexture = '/terxtures/tile.jpg';
+        var cubeTexture = './textures/yellow.jpg';
+        var columnTexture = './textures/marble.jpg';
+        var ceilingTexture = './terxtures/tile.jpg';
 
         this.ceiling = new MyPyramid(scene, 4, 1);
         this.quad = new MyQuad(scene);

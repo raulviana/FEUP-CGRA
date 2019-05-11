@@ -23,8 +23,8 @@ class MyBigTriangle extends CGFobject {
 
 		//Counter-clockwise reference of vertices
 		this.indices = [
-			0, 2, 1, 
-			1, 2, 0
+			0, 1, 2,
+			2, 1, 0
 		];
 
 		this.normals = [
@@ -37,12 +37,12 @@ class MyBigTriangle extends CGFobject {
 		]
 
 		this.texCords = [
-            0, 1,
-			1, 1,
+            0, 0,
+			0, 1,
+			1, 0,
 			0, 0,
-			 0, 1,
-			1, 1,
-			0, 0
+			0, 1,
+			1, 0
 		]
 		
 		this.primitiveType = this.scene.gl.TRIANGLES;
