@@ -38,6 +38,10 @@ class MyCylinder extends CGFobject {
 				this.normals.push(
 					Math.sin(step_angle*i), 0, Math.cos(step_angle*i)
 				);
+				this.normals.push(
+				    0, 1, 0);
+				this.normals.push(
+				    0, -1, 0);
 
 			}
 
