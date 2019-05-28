@@ -8,6 +8,13 @@ class MyBird extends CGFobject {
 	constructor(scene) {
         super(scene);
 
+        this.maxVel = 0.5;
+        this.orientation = 0;
+        this.vel = 0;
+        this.pos = [3, 0, 3];
+        this.wingRot = 0;
+           
+
         this.cube = new MyUnitCube(scene);
         this.cone = new MyCone(scene, 4, 1);
         this.cylinder = new MyCylinder(scene, 4, 1);
@@ -39,10 +46,31 @@ class MyBird extends CGFobject {
         this.materialDifuPink.setShininess(10.0);
         this.materialDifuPink.loadTexture('./images/pinkfeather.jpg');
     	this.materialDifuPink.setTextureWrap('REPEAT', 'REPEAT'); 
-
-
-        
         this.ang2rad = Math.PI/180;        
+	}
+
+	turn(v){
+		this.orientation += v * 50 ;
+	}
+	accelerate(v){
+		if(this.vel <= this.maxVel || v < 0){
+		this.vel += v *0.2;
+		}
+	}
+	reset(){
+		this.orientation = 0;
+        this.vel = 0; 
+        this.pos = [3, 0, 3];
+	}
+
+	update(t){
+	   this.pos[1] = Math.sin(t) *0.6;
+	   this.wingRot = (-1*Math.sin(t) * 45) *0.6;
+	   //updates position in terms of velocity and orientation
+	   if(this.vel != 0){
+	       this.pos[0] += this.vel * Math.sin(this.ang2rad * this.orientation);
+	       this.pos[2] += this.vel * Math.cos(this.ang2rad * this.orientation);
+	   }
 	}
 
     display(){
@@ -51,8 +79,9 @@ class MyBird extends CGFobject {
  this.scene.pushMatrix();
      
         this.scene.pushMatrix();
-          this.scene.scale(5, 5, 5);
-
+        this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
+        this.scene.rotate(this.ang2rad * this.orientation, 0, 1, 0);
+       
         //Corpo
         this.scene.pushMatrix();
           this.scene.translate(0, 2, 0);
@@ -95,49 +124,6 @@ class MyBird extends CGFobject {
           this.materialDifuPink.apply();
           this.cube.display();
         this.scene.popMatrix();
-
-        //Asas
-          //Esq
-        this.scene.pushMatrix();
-          this.scene.rotate(this.ang2rad *20, 0, 1, 0);
-          this.scene.translate(0.5, 2, 0);
-         
-        
-        this.scene.pushMatrix();
-          this.scene.translate(0, 0, 0.2);
-          this.scene.rotate(this.ang2rad * (90 + 180), 0, 1, 0);
-          this.scene.scale(0.35, 0.01, 0.8);
-          this.materialDifuBlue.apply();
-          this.cube.display();
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-          this.scene.translate(0.65, 0, 0.1);
-          this.scene.rotate(this.ang2rad * (110 + 180), 0, 1, 0);
-          this.scene.scale(0.35, 0.01, 0.7);
-          this.cube.display();
-         this.scene.popMatrix();
-
- 
-
-          //Dta
-        this.scene.pushMatrix();
-          this.scene.translate(-1, 0, -0.2);
-          this.scene.rotate(this.ang2rad *40, 0, 1, 0);
-          this.scene.scale(0.35, 0.01, 0.8);
-          this.materialDifuBlue.apply();
-          this.cube.display();
-        this.scene.popMatrix();
-
-        this.scene.pushMatrix();
-          this.scene.translate(-1.35, 0, -0.8);
-          this.scene.rotate(this.ang2rad * 20, 0, 1, 0);
-          this.scene.scale(0.35, 0.01, 0.7);
-          this.cube.display();
-         this.scene.popMatrix();
-
-        this.scene.popMatrix();
-
 
         //Cabeça
         this.scene.pushMatrix();
@@ -186,8 +172,65 @@ class MyBird extends CGFobject {
           this.cube.display();
         this.scene.popMatrix();
 
-    
+          //Asas
+         
+
+     this.scene.pushMatrix();
+          this.scene.translate(0, 2, -0.2);
+
+          //Esq
+
+          this.scene.pushMatrix();
+          this.scene.translate(0.2, 0, 0);
+          this.scene.rotate(this.ang2rad * this.wingRot, 0, 0, 1);
+          this.scene.translate(0.3, 0, 0);
+
+         
+
+        this.scene.pushMatrix();
+          this.scene.translate(0, 0, 0.2);
+          this.scene.rotate(this.ang2rad * (90 + 180), 0, 1, 0);
+          this.scene.scale(0.35, 0.01, 0.8);
+          this.materialDifuBlue.apply();
+          this.cube.display();
         this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+          this.scene.translate(0.65, 0, 0.1);
+          this.scene.rotate(this.ang2rad * (110 + 180), 0, 1, 0);
+          this.scene.scale(0.35, 0.01, 0.7);
+          this.cube.display();
+         this.scene.popMatrix();
+
+          this.scene.popMatrix();
+
+ 
+
+          //Dta
+          this.scene.pushMatrix();
+          this.scene.translate(-0.15, 0, 0);
+          this.scene.rotate(this.ang2rad * -1 * this.wingRot, 0, 0, 1);
+          
+
+
+        this.scene.pushMatrix();
+          this.scene.translate(-0.95, 0, 0.15);
+          this.scene.rotate(this.ang2rad * 75, 0, 1, 0);
+          this.scene.scale(0.35, 0.01, 0.8);
+          this.materialDifuBlue.apply();
+          this.cube.display();
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+          this.scene.translate(-0.30, 0, 0.25);
+          this.scene.rotate(this.ang2rad * 90, 0, 1, 0);
+          this.scene.scale(0.35, 0.01, 0.7);
+          this.cube.display();
+        this.scene.popMatrix();
+         
+      this.scene.popMatrix();
+
+ this.scene.popMatrix();
     }
 
 

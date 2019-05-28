@@ -33,14 +33,13 @@ class MyScene extends CGFscene {
         this.shaders.setUniformsValues({ timeFactor: 0 });
 
         this.setUpdatePeriod(50);
+        this.v = 0.1;
 
         //Objects connected to MyInterface
+       this.scaleFactor = 1.0;
+       this.speedFactor = 1.0;
     }
 
-    update(t) {
-			this.shaders.setUniformsValues({ timeFactor: t / 100 % 1000 });
-		
-	}
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -56,8 +55,43 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
-    update(t){
 
+    checkKeys() {
+var text="Keys pressed: ";
+var keysPressed=false;
+// Check for key codes e.g. in ​ https://keycode.info/
+if (this.gui.isKeyPressed("KeyW")) {
+this.bird.accelerate(this.v);
+text+=" W ";
+keysPressed=true;
+}
+if (this.gui.isKeyPressed("KeyS")){
+this.bird.accelerate(-this.v);
+text+=" S ";
+keysPressed=true;
+}
+if (this.gui.isKeyPressed("KeyA")) {
+this.bird.turn(this.v);
+text+=" A ";
+keysPressed=true;
+}
+if (this.gui.isKeyPressed("KeyD")){
+this.bird.turn(-this.v);
+text+=" D ";
+keysPressed=true;
+}
+if (this.gui.isKeyPressed("KeyR")){
+this.bird.reset();
+text+=" R ";
+keysPressed=true;
+}
+if (keysPressed) console.log(text);
+
+}
+    
+    update(t){
+		this.bird.update(t / 500 % 1000);
+		this.checkKeys();
     }
 
     display() {
@@ -89,6 +123,7 @@ class MyScene extends CGFscene {
 		// activate selected shader
 		//this.setActiveShader(this.shaders);
         this.pushMatrix();
+        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.bird.display();
         this.popMatrix();
        // this.setActiveShader(this.defaultShader);
