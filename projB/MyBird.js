@@ -50,11 +50,11 @@ class MyBird extends CGFobject {
 	}
 
 	turn(v){
-		this.orientation += v * 50 ;
+		this.orientation += v * 50 * this.scene.speedFactor ;
 	}
 	accelerate(v){
-		if(this.vel <= this.maxVel || v < 0){
-		this.vel += v *0.2;
+		if(this.vel <= (this.maxVel * this.scene.speedFactor) || v < 0){
+		this.vel += v *0.2 * this.scene.speedFactor;
 		}
 	}
 	reset(){
@@ -81,6 +81,7 @@ class MyBird extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         this.scene.rotate(this.ang2rad * this.orientation, 0, 1, 0);
+        this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
        
         //Corpo
         this.scene.pushMatrix();

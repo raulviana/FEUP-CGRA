@@ -23,14 +23,30 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.plane = new Plane(this, 32);
+        this.plane = new MyTerrain(this, 60);
         this.bird = new MyBird(this);
+        this.house = new MyHouse(this);
         
+        //textures and materials
+        this.appearance = new CGFappearance(this);
+		this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
+		this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
+		this.appearance.setSpecular(0.0, 0.0, 0.0, 1);
+		this.appearance.setShininess(120);
+
+
+        this.textureTerrain = new CGFtexture(this, "./images/terrain.jpg");
+        this.appearance.setTexture(this.textureTerrain);
+        this.appearance.setTextureWrap('REPEAT', 'REPEAT');
+        this.textureMap = new CGFtexture(this, "./images/heightmap.jpg");
+        this.textureAltimetry = new CGFtexture(this, "./images/altimetry.png");
+
         //shaders
         this.shaders = new CGFshader(this.gl, 
-        "./shaders/bird.vert", "./shaders/bird.frag");
-
-        this.shaders.setUniformsValues({ timeFactor: 0 });
+        "./shaders/terrain.vert", "./shaders/terrain.frag");
+        this.shaders.setUniformsValues({uSampler2:1});
+        this.shaders.setUniformsValues({uSampler: 1});
+        
 
         this.setUpdatePeriod(50);
         this.v = 0.1;
@@ -38,6 +54,8 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
        this.scaleFactor = 1.0;
        this.speedFactor = 1.0;
+
+     
     }
 
     initLights() {
@@ -107,26 +125,38 @@ if (keysPressed) console.log(text);
 
         // Draw axis
         this.axis.display();
-
+        
+        // aplly main appearance (including texture in default texture unit 0)
+		this.appearance.apply();
         //Apply default appearance
+
         this.setDefaultAppearance();
+        this.setActiveShader(this.shaders);
+        this.pushMatrix();
+        this.textureMap.bind(1);
+        //this.textureAltimetry.bind(0);
 
        
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
         this.rotate(-0.5*Math.PI, 1, 0, 0);
+        this.translate(0, 0, -1);
         this.scale(60, 60, 1);
         this.plane.display();
         this.popMatrix();
-		
-		// activate selected shader
-		//this.setActiveShader(this.shaders);
+
+		this.setActiveShader(this.defaultShader); 
+
+		this.pushMatrix();
+        this.house.display();
+        this.popMatrix();
         this.pushMatrix();
-        this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
         this.bird.display();
         this.popMatrix();
-       // this.setActiveShader(this.defaultShader);
+
+        this.popMatrix();
+       
         // ---- END Primitive drawing section
 
        
