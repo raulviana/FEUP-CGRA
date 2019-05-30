@@ -10,6 +10,7 @@ uniform mat4 uNMatrix;
 varying vec2 vTextureCoord;
 uniform sampler2D uSampler2;
 uniform sampler2D uSampler;
+uniform sampler2D uSampler3;
 
 void main() {
 	vec3 offset=vec3(0.0,0.0,0.0);

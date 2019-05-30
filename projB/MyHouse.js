@@ -52,9 +52,9 @@ class MyHouse extends CGFobject {
 
 display(){
 	this.scene.pushMatrix()
-	this.scene.translate(13, 1.8, -1);
-	this.scene.rotate(this.ang2rad * -70, 0, 1, 0);
-	this.scene.scale(0.8, 1, 0.8);
+	this.scene.translate(10, 1.8, -10);
+	this.scene.rotate(this.ang2rad * -30, 0, 1, 0);
+	this.scene.scale(0.9, 1.1, 0.9);
 
   //Walls
     this.scene.pushMatrix();

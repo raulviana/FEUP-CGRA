@@ -11,8 +11,9 @@ class MyBird extends CGFobject {
         this.maxVel = 0.5;
         this.orientation = 0;
         this.vel = 0;
-        this.pos = [3, 0, 3];
+        this.pos = [3, 8, 3];
         this.wingRot = 0;
+        this.interval = 0.1;
            
 
         this.cube = new MyUnitCube(scene);
@@ -60,11 +61,11 @@ class MyBird extends CGFobject {
 	reset(){
 		this.orientation = 0;
         this.vel = 0; 
-        this.pos = [3, 0, 3];
+        this.pos = [3, 8, 3];
 	}
 
 	update(t){
-	   this.pos[1] = Math.sin(t) *0.6;
+	   this.pos[1] += this.interval * Math.sin(t) *0.6;
 	   this.wingRot = (-1*Math.sin(t) * 45) *0.6;
 	   //updates position in terms of velocity and orientation
 	   if(this.vel != 0){
@@ -79,10 +80,10 @@ class MyBird extends CGFobject {
  this.scene.pushMatrix();
      
         this.scene.pushMatrix();
-        this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
+         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         this.scene.rotate(this.ang2rad * this.orientation, 0, 1, 0);
         this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
-       
+      
         //Corpo
         this.scene.pushMatrix();
           this.scene.translate(0, 2, 0);
