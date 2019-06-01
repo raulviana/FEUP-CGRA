@@ -10,12 +10,7 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
-
-         this.material = new CGFappearance(this);
-        this.material.setAmbient(1.0, 0.8, 1.0, 1.0);
-        this.material.setDiffuse(1.0, 0.8, 1.0, 1.0);
-        this.material.setSpecular(0.5, 0.5, 0.5, 1.0);
-        this.material.setShininess(10.0);
+		
 
         this.ang2rad = Math.PI/180;
 
@@ -35,7 +30,9 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.house = new MyHouse(this);
         this.landscape = new MyCubeMap(this);
-        this.tree = new MyLSPlant(this); //LSystems
+        this.treeBranch = new MyTreeBranch(this);
+        this.tree1 = new MyLSPlant(this); //LSystems
+        this.tree2 = new MyLSPlant(this);
         this.lightning = new MyLightning(this);
         
         //textures and materials
@@ -88,26 +85,51 @@ class MyScene extends CGFscene {
         this.lightningScaleFactor = 0.5;
         this.lightningAxiom = "X";
         this.lightningRuleF = "FF";
-        this.lightningRuleX = "FF[F-X][F-X]F[XF]+FX[-FX]F[X]-FX";
-        this.lightningRuleX1 = "FF[-X][X]+X[F-X][FX]+X";
-        this.lightningRuleX2 = "FF[+X]FX[FX]-X";
-        this.lightningRuleX3 = "FF[+X][X]F[X]XF[+X]F[X]F[-X]FX";
-        this.lightningRuleX4 = "FF[-XF][X]XF[X][FX]+FX";
-        this.lightningRuleX5 = "FF[+X]X[F-X][X]FX";
-        this.lightningRuleX6 = "FF[X][FX]F+X[FX]F[X]F[-X]FX";
-        this.lightningRuleX7 = "FF[+X]FX[FX]F[X]F[X]-FX";
-        this.lightningRuleX8 = "FF[-X]XF[X]F+FX";
+        this.lightningRuleX = "FFFF[F-X][F-X]F[XF]+FX[-FX]F[X]-FX";
+        this.lightningRuleX1 = "FFFF[-X][X]+X[F-X][FX]+X";
+        this.lightningRuleX2 = "FFFF[+X]FX[FX]-X";
+        this.lightningRuleX3 = "FFFF[+X][X]F[X]XF[+X]F[X]F[-X]FX";
+        this.lightningRuleX4 = "FFFF[-XF][X]XF[X][FX]+FX";
+        this.lightningRuleX5 = "FFFF[+X]X[F-X][X]FX";
+        this.lightningRuleX6 = "FFFF[X][FX]F+X[FX]F[X]F[-X]FX";
+        this.lightningRuleX7 = "FFFF[+X]FX[FX]F[X]F[X]-FX";
+        this.lightningRuleX8 = "FFFF[-X]XF[X]F+FX";
 
         //ligthning position
-        this.maxX = Math.floor((Math.random() * 25) + 5);
-        this.maxZ = Math.floor((Math.random() * 40) + 5);
-        this.rot = Math.floor((Math.random() * 45) +1);
-         
+        this.maxX = Math.floor((Math.random() * 25) -10);
+        this.maxZ = Math.floor((Math.random() * 40) -20);
+        this.rot = Math.floor((Math.random() * 90) -45);
+        //lightning animation
+        this.showLightning = false;
+        this.initTime = 0;
+		//lightning material
+		this.material = new CGFappearance(this);
+        this.material.setAmbient(1.0, 0.8, 1.0, 1.0);
+        this.material.setDiffuse(1.0, 0.8, 1.0, 1.0);
+        this.material.setSpecular(0.5, 0.5, 0.5, 1.0);
+        this.material.setShininess(10.0);
 
-         
      
         this.doGenerate = function () {
-            this.tree.generate(
+            this.tree1.generate(
+                this.treeAxiom,
+                {
+                    "F": [this.treeRuleF],
+                    "X": [this.treeRuleX, 
+                          this.treeRuleX1, 
+                          this.treeRuleX2,
+                          this.treeRuleX3,
+                          this.treeRuleX4,
+                          this.treeRuleX5,
+                          this.treeRuleX6,
+                          this.treeRuleX7,
+                          this.treeRuleX8]
+                 },
+                this.treeAngle,
+                this.treeIterations,
+                this.treeScaleFactor
+            );
+             this.tree2.generate(
                 this.treeAxiom,
                 {
                     "F": [this.treeRuleF],
@@ -169,7 +191,7 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    checkKeys() {
+    checkKeys(t) {
 var text="Keys pressed: ";
 var keysPressed=false;
 // Check for key codes e.g. in ​ https://keycode.info/
@@ -199,7 +221,9 @@ text+=" R ";
 keysPressed=true;
 }
 if(this.gui.isKeyPressed("KeyL")){
-
+this.lightning.startAnimation(t, this.lightningAxiom);
+this.initTime = t;
+this.showLightning = true;
 text+=" L ";
 keysPressed=true;
 }
@@ -209,7 +233,16 @@ if (keysPressed) console.log(text);
     
     update(t){
 		this.bird.update(t / 500 % 1000);
-		this.checkKeys();
+		this.checkKeys(t);
+		if(this.showLightning == true){
+		this.lightning.update(t);
+		}
+		if(t - this.initTime > 800 && this.showLightning == true){
+			this.showLightning = false;
+			this.maxX = Math.floor((Math.random() * 25) -10);
+            this.maxZ = Math.floor((Math.random() * 40) -20);
+            this.rot = Math.floor((Math.random() * 90) -45);
+		}
     }
 
     display() {
@@ -270,40 +303,49 @@ if (keysPressed) console.log(text);
         this.pushMatrix();
         this.translate(8, 2, -4);
         this.rotate(this.ang2rad * 25, 0, 1, 0);
-        this.tree.display();
+        this.tree1.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(6, 2, -2);
         this.rotate(this.ang2rad * 40, 0, 1, 0);
-        this.tree.display();
+        this.tree2.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(9, 2, -1);
         this.rotate(this.ang2rad * 60, 0, 1, 0);
-        this.tree.display();
+        this.tree1.display();
         this.popMatrix();
 
         this.pushMatrix();
         this.translate(7.5, 2, 2);
         this.rotate(this.ang2rad * 950, 0, 1, 0);
-        this.tree.display();
+        this.tree2.display();
         this.popMatrix();
         this.popMatrix();
 
         //lightning
+        if(this.showLightning == true){
         this.pushMatrix();
         
-        this.translate(0, 15, 0);
+        this.translate(this.maxX, 20, this.maxZ);
         this.rotate(this.ang2rad * 180 , 1, 0, 0);
         this.rotate(this.ang2rad * 220, 0, 1, 0);
         this.rotate(this.ang2rad * this.rot, 0, 0, 1);
         this.material.apply();
         this.lightning.display();
         this.popMatrix();
+        }
 
+		//tree branch
+        this.pushMatrix();
+      //  this.scale(20, 20, 20);
+        
+        this.treeBranch.display();
         this.popMatrix();
+
+        this.popMatrix();  
        
         // ---- END Primitive drawing section
 

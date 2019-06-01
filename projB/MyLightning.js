@@ -4,12 +4,10 @@
  * @param scene - Reference to MyScene object
  */
 
-class MyLightning extends CGFobject {
+class MyLightning extends CGFobject{
 	constructor(scene) {
         super(scene);
         this.init();
-
-       
     }
 
     init(){
@@ -27,28 +25,7 @@ class MyLightning extends CGFobject {
         };
     }
 
-
-    // gera o sistema L com os par�metros atuais da cena
-    generate(_axiom, _productions, _angle, _iterations, _scale){
-        // copia o axioma da cena para iniciar a sequência de desenvolvimento
-        this.axiom = _axiom;
-
-        // cria as producoes
-        this.productions=_productions;
-
-        // angulo de rotacao
-        this.angle = _angle * Math.PI / 180.0;
-
-        // numero de iteracoes
-        this.iterations = _iterations;
-
-        // escalamento dos elementos dependente do numero de iteracoes
-        this.scale = Math.pow(_scale, this.iterations-1);
-
-        // desenvolve a sequencia de desenvolvimento do Sistema L
-        this.iterate()
-     }
-
+    
   
     // desenvolve o axioma ao longo de uma sequência de desenvolvimento com um determinado número de iterações
     iterate(){
@@ -77,6 +54,46 @@ class MyLightning extends CGFobject {
         console.log("Final: "+this.axiom);
         console.log("(length: "+this.axiom.length+")");
     }
+
+
+    // gera o sistema L com os par�metros atuais da cena
+    generate(_axiom, _productions, _angle, _iterations, _scale){
+        // copia o axioma da cena para iniciar a sequência de desenvolvimento
+        this.axiom = _axiom;
+
+        // cria as producoes
+        this.productions=_productions;
+
+        // angulo de rotacao
+        this.angle = _angle * Math.PI / 180.0;
+
+        // numero de iteracoes
+        this.iterations = _iterations;
+
+        // escalamento dos elementos dependente do numero de iteracoes
+        this.scale = Math.pow(_scale, this.iterations-1);
+
+        // desenvolve a sequencia de desenvolvimento do Sistema L
+        this.iterate()
+     }
+
+
+    startAnimation(t, _axiom){
+        this.depth = 0;
+        this.initAnimation = t;
+        this.axiom = _axiom;
+        this.iterate();
+    }
+
+   update(t){
+        var deltaTime = t - this.initAnimation;
+        deltaTime = deltaTime / 360 %100;
+        if(deltaTime != 0){
+        this.depth = (deltaTime * this.axiom.length *0.8);
+        }
+    }
+
+
 
     display(){
         this.scene.pushMatrix();
@@ -115,11 +132,14 @@ class MyLightning extends CGFobject {
 
                     if ( primitive )
                     {
+                        if(this.depth >= i && this.depth != 0){
                         this.scene.pushMatrix();
-	                 	this.scene.scale(0.2, 0.8, 1);
+	                 	this.scene.scale(0.2, 1, 1);
+	                 	this.scene.translate(0, 0.5, 0);
                         primitive.display();
                         this.scene.popMatrix();
-                        this.scene.translate(0, 0.8, 0);
+                        this.scene.translate(0, 1, 0);
+                        }
                     }
                     break;
             }
