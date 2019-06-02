@@ -13,6 +13,7 @@ class MyScene extends CGFscene {
 		
 
         this.ang2rad = Math.PI/180;
+        this.branchRot = (Math.random() * 90)+1;
 
         //Background color
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -30,10 +31,16 @@ class MyScene extends CGFscene {
         this.bird = new MyBird(this);
         this.house = new MyHouse(this);
         this.landscape = new MyCubeMap(this);
-        this.treeBranch = new MyTreeBranch(this);
         this.tree1 = new MyLSPlant(this); //LSystems
         this.tree2 = new MyLSPlant(this);
         this.lightning = new MyLightning(this);
+        this.nest = new MyNest(this);
+		//tree branchs
+		this.treeBranch = [];
+        for (var i = 0; i < 4; i++){
+            this.treeBranch.push(new MyTreeBranch(this));
+        }
+      
         
         //textures and materials
         this.appearance = new CGFappearance(this);
@@ -228,6 +235,12 @@ text+=" L ";
 keysPressed=true;
 }
 
+if(this.gui.isKeyPressed("KeyP")){
+this.bird.dive();
+text+=" P ";
+keysPressed=true;
+}
+
 if (keysPressed) console.log(text);
 }
     
@@ -268,8 +281,7 @@ if (keysPressed) console.log(text);
         this.pushMatrix();
         this.textureMap.bind(1);
         this.textureAltimetry.bind(2);
-
-       
+   
 
         // ---- BEGIN Primitive drawing section
         this.pushMatrix();
@@ -340,9 +352,37 @@ if (keysPressed) console.log(text);
 
 		//tree branch
         this.pushMatrix();
-      //  this.scale(20, 20, 20);
-        
-        this.treeBranch.display();
+        this.translate(3, 1.8, 6);
+        this.rotate(this.ang2rad * this.branchRot, 0, 1, 0);
+        this.rotate(this.ang2rad * 90, 1, 0, 0);
+        this.treeBranch[0].display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(10, 1.8, 4);
+        this.rotate(this.ang2rad * this.branchRot, 0, 1, 0);
+        this.rotate(this.ang2rad * 90, 1, 0, 0);
+        this.treeBranch[0].display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(-5, 1.8, 6);
+        this.rotate(this.ang2rad * this.branchRot, 0, 1, 0);
+        this.rotate(this.ang2rad * 90, 1, 0, 0);
+        this.treeBranch[0].display();
+        this.popMatrix();
+
+        this.pushMatrix();
+        this.translate(15, 1.8, 0);
+        this.rotate(this.ang2rad * this.branchRot, 0, 1, 0);
+        this.rotate(this.ang2rad * 90, 1, 0, 0);
+        this.treeBranch[0].display();
+        this.popMatrix();
+
+        //nest
+        this.pushMatrix();
+        this.translate(10, 1.6, -2);
+        this.nest.display();
         this.popMatrix();
 
         this.popMatrix();  

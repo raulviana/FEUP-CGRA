@@ -54,7 +54,7 @@ display(){
 	this.scene.pushMatrix()
 	this.scene.translate(10, 1.8, -10);
 	this.scene.rotate(this.ang2rad * -30, 0, 1, 0);
-	this.scene.scale(0.9, 1.1, 0.9);
+	this.scene.scale(1.3, 1.5, 1.3);
 
   //Walls
     this.scene.pushMatrix();

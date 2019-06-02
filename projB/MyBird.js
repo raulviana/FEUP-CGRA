@@ -12,8 +12,11 @@ class MyBird extends CGFobject {
         this.orientation = 0;
         this.vel = 0;
         this.pos = [3, 8, 3];
+        this.maxY = 8;
         this.wingRot = 0;
         this.interval = 0.1;
+        this.down = false;
+        this.diveAnimation = false;
            
 
         this.cube = new MyUnitCube(scene);
@@ -58,6 +61,12 @@ class MyBird extends CGFobject {
 		this.vel += v *0.2 * this.scene.speedFactor;
 		}
 	}
+
+	dive(){
+		this.diveAnimation = true;
+		this.down = true;
+
+	}
 	reset(){
 		this.orientation = 0;
         this.vel = 0; 
@@ -72,15 +81,23 @@ class MyBird extends CGFobject {
 	       this.pos[0] += this.vel * Math.sin(this.ang2rad * this.orientation);
 	       this.pos[2] += this.vel * Math.cos(this.ang2rad * this.orientation);
 	   }
+	   //dive animation
+	   if(this.down && this.diveAnimation){
+	   	   if(this.pos[1] > 1) this.pos[1] -= this.interval*2;
+	   	   else this.down = false;
+	   }
+	   if(this.down == false && this.diveAnimation){
+	   	   if(this.pos[1] < this.maxY) this.pos[1] += this.interval*2;
+	   	   else this.diveAnimation = false;
+	   }
 	}
 
     display(){
 
-
  this.scene.pushMatrix();
      
         this.scene.pushMatrix();
-         this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
+        this.scene.translate(this.pos[0], this.pos[1], this.pos[2]);
         this.scene.rotate(this.ang2rad * this.orientation, 0, 1, 0);
         this.scene.scale(this.scene.scaleFactor, this.scene.scaleFactor, this.scene.scaleFactor);
       
