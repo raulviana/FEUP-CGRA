@@ -30,7 +30,7 @@ In second assignment scene there's also some keyboard input controls:
 
 |  Key | Function   |
 |---|-----|
-|   Bird  | |
+|   Bird   |
 | W  | accelerate   |
 | S  | brake  |
 |  A | turn left  |
