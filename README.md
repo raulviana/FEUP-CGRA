@@ -30,16 +30,35 @@ In second assignment scene there's also some keyboard input controls:
 
 |  Key | Function   |
 |---|-----|
-|   Bird   |
 | W  | accelerate   |
 | S  | brake  |
 |  A | turn left  |
 |  D |  turn right |
 |  P |  dird dive (to pick up stick - not implemented) |
-|  Scene |
 |  R |  reset scene |
 |  L | generate lightning  |
 
  
+## First assignment visuals
+
+### Screenshots
+
+![Screenshot 1 - nigth](https://github.com/raulviana/FEUP-CGRA/blob/master/screenshots/TG1_1.png)
+![Screenshot 2 - day](https://github.com/raulviana/FEUP-CGRA/blob/master/screenshots/TG1_2.png)
+![Screenshot 3 - no textures](https://github.com/raulviana/FEUP-CGRA/blob/master/screenshots/TG1_3.png)
+
+
+## Second assignment visuals
+
+### Screenshots
+
+![Screenshot 1 - cottage and tree detail](https://github.com/raulviana/FEUP-CGRA/blob/master/screenshots/TG2_1.png)
+![Screenshot 2 - general view](https://github.com/raulviana/FEUP-CGRA/blob/master/screenshots/TG2_2.png)
+![Screenshot 3 - bird detail](https://github.com/raulviana/FEUP-CGRA/blob/master/screenshots/TG2_3.png)
+
+### Video Demo
+[Video Demo 1](https://youtu.be/YtD4dwaXr4k)
+[Video Demo 2](https://youtu.be/pprtEyneYTg)
+
 
 
