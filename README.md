@@ -1,5 +1,5 @@
 # CGRA
-repository for the Computer Graphics course pratical classes exercises and projects
+Repository for the Computer Graphics [(**CGRA**)](https://sigarra.up.pt/feup/pt/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=419996) course pratical classes exercises and projects
 
 ## Tools
 JavaScript, WebGL, CGF
